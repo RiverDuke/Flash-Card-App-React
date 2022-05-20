@@ -43,7 +43,7 @@ export default function Home() {
 
                   <p className="card-text">{itr.description}</p>
                   <div className="d-flex flex-row">
-                    <a href="#" className="btn btn-secondary">
+                    <Link to={`/decks/${itr.id}`} className="btn btn-secondary">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="16"
@@ -56,7 +56,7 @@ export default function Home() {
                         <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
                       </svg>
                       View
-                    </a>
+                    </Link>
                     <Link
                       to={`/decks/${itr.id}/study`}
                       className="btn btn-primary ml-1"

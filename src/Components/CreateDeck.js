@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { createDeck } from "../utils/api";
+import { Link, useHistory } from "react-router-dom";
+import { createDeck, readDeck } from "../utils/api";
 
 export default function CreateDeck() {
+  const history = useHistory();
   const initialState = {
     name: "",
     description: "",
@@ -16,11 +17,16 @@ export default function CreateDeck() {
   };
 
   function handleSubmit(event) {
-    const ac = new AbortController();
     event.preventDefault();
+    const ac = new AbortController();
+    let id = 0;
 
     createDeck(data, ac.signal)
-      .then((response) => console.log(response))
+      .then((response) => {
+        console.log(response);
+        id = response.id;
+        history.push(`/decks/${id}`);
+      })
       .catch((err) => console.log(err));
     setData({ ...initialState });
   }
