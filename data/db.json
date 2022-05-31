@@ -16,69 +16,9 @@
       "id": 3
     },
     {
-      "name": "Deck Delete",
-      "description": "This deck is created to be deleted",
-      "id": 4
-    },
-    {
-      "name": "Delet this ",
-      "description": "Delete delete deltet",
-      "id": 5
-    },
-    {
-      "name": "hello",
-      "description": "hello again",
-      "id": 6
-    },
-    {
-      "name": "goodbye",
-      "description": "goodbye again",
-      "id": 7
-    },
-    {
-      "name": "good evening",
-      "description": "good evening",
+      "name": "",
+      "description": "",
       "id": 8
-    },
-    {
-      "name": "",
-      "description": "",
-      "id": 9
-    },
-    {
-      "name": "",
-      "description": "",
-      "id": 10
-    },
-    {
-      "name": "",
-      "description": "",
-      "id": 11
-    },
-    {
-      "name": "",
-      "description": "",
-      "id": 12
-    },
-    {
-      "name": "",
-      "description": "",
-      "id": 13
-    },
-    {
-      "name": "hgaldksfj",
-      "description": "adfasdfdsaf",
-      "id": 14
-    },
-    {
-      "name": "dfg",
-      "description": "dfgg",
-      "id": 15
-    },
-    {
-      "name": "ghlasdf",
-      "description": "adsfasdf",
-      "id": 16
     }
   ],
   "cards": [
@@ -124,48 +64,6 @@
       "back": "gsfdgsdfgf",
       "deckId": 3,
       "id": 8
-    },
-    {
-      "front": "dfgdsr222333",
-      "back": "dsfgdfsg222dfg",
-      "deckId": 4,
-      "id": 9
-    },
-    {
-      "front": "sdfgsdfg",
-      "back": "sdfgsdf",
-      "deckId": 4,
-      "id": 10
-    },
-    {
-      "front": "sdfgsdfg",
-      "back": "sdfgdfs",
-      "deckId": 4,
-      "id": 11
-    },
-    {
-      "front": "sdfgsdfg",
-      "back": "sdfgdsfg",
-      "deckId": 4,
-      "id": 12
-    },
-    {
-      "front": "sdfgsdfg",
-      "back": "sdfgsdfg",
-      "deckId": 4,
-      "id": 13
-    },
-    {
-      "front": "adsf",
-      "back": "adsfadsf",
-      "deckId": 5,
-      "id": 14
-    },
-    {
-      "front": "adsfads",
-      "back": "asdfasdf",
-      "deckId": 5,
-      "id": 15
     }
   ]
 }

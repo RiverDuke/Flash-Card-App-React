@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import { Link, useRouteMatch } from "react-router-dom";
-import { readDeck } from "../utils/api";
+import { deleteDeck, readDeck } from "../utils/api";
+
 export default function Deck() {
   const { params } = useRouteMatch();
   const [deck, setDeck] = useState({ cards: [] });
   const ac = new AbortController();
+  const history = useHistory();
 
   useEffect(() => {
     readDeck(params.deckId).then((response) => {
@@ -57,7 +60,23 @@ export default function Deck() {
           >
             Add Cards
           </Link>
-          <button className="btn btn-danger ml-auto">
+          <button
+            className="btn btn-danger ml-auto"
+            onClick={() => {
+              if (
+                window.confirm(
+                  "Delete this deck? \n \n You will not be abel to recover it."
+                )
+              ) {
+                console.log("hello");
+                deleteDeck(deck.id, ac.signal);
+                history.push("/");
+                return;
+              } else {
+                history.push(`/decks/${deck.id}`);
+              }
+            }}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"

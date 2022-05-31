@@ -1,17 +1,18 @@
-import { listDecks } from "../utils/api";
+import { deleteDeck, listDecks } from "../utils/api";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 export default function Home() {
   const [list, setList] = useState([]);
-
+  const ac = new AbortController();
+  const history = useHistory();
   useEffect(() => {
-    const ac = new AbortController();
     listDecks(ac.signal).then((response) => {
       setList(response);
     });
     return () => ac.abort();
-  }, []);
+  }, [list]);
 
   return (
     <>
@@ -78,7 +79,23 @@ export default function Home() {
                       </svg>
                       Study
                     </Link>
-                    <button className="btn btn-danger ml-auto">
+                    <button
+                      className="btn btn-danger ml-auto"
+                      onClick={() => {
+                        if (
+                          window.confirm(
+                            "Delete this deck? \n \n You will not be abel to recover it."
+                          )
+                        ) {
+                          console.log("hello");
+                          deleteDeck(itr.id, ac.signal);
+                          history.push("/");
+                          return;
+                        } else {
+                          history.push("/");
+                        }
+                      }}
+                    >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="16"
