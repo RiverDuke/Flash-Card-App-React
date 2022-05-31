@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Link, useRouteMatch } from "react-router-dom";
-import { deleteDeck, readDeck } from "../utils/api";
+import { deleteCard, deleteDeck, readCard, readDeck } from "../utils/api";
 
 export default function Deck() {
   const { params } = useRouteMatch();
@@ -10,10 +10,12 @@ export default function Deck() {
   const history = useHistory();
 
   useEffect(() => {
-    readDeck(params.deckId).then((response) => {
-      setDeck(response);
-    });
-    return ac.abort();
+    readDeck(params.deckId)
+      .then((response) => {
+        setDeck(response);
+      })
+      .catch((err) => console.log(err));
+    return () => ac.abort();
   }, []);
   console.log(deck.cards);
 
@@ -65,7 +67,7 @@ export default function Deck() {
             onClick={() => {
               if (
                 window.confirm(
-                  "Delete this deck? \n \n You will not be abel to recover it."
+                  "Delete this deck? \n \n You will not be able to recover it."
                 )
               ) {
                 console.log("hello");
@@ -122,7 +124,24 @@ export default function Deck() {
                     Edit
                   </Link>
 
-                  <button className="btn btn-danger ml-1">
+                  <button
+                    className="btn btn-danger ml-1"
+                    onClick={() => {
+                      if (
+                        window.confirm(
+                          "Delete this card? \n \n You will not be abel to recover it."
+                        )
+                      ) {
+                        deleteCard(itr.id, ac.signal);
+                        history.push(`/decks/${deck.id}`);
+                        readDeck(params.deckId, ac.signal).then((response) => {
+                          return setDeck(response);
+                        });
+                      } else {
+                        history.push(`/decks/${deck.id}`);
+                      }
+                    }}
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
