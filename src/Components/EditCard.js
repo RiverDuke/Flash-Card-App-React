@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link, useRouteMatch, useHistory } from "react-router-dom";
-import { readDeck, updateDeck } from "../utils/api";
+import { readCard, readDeck, updateCard, updateDeck } from "../utils/api";
 export default function EditCard() {
   const [deck, setDeck] = useState({});
+  const [card, setCard] = useState({});
   const history = useHistory();
   const initialState = {
     front: "",
@@ -15,11 +16,17 @@ export default function EditCard() {
 
   const ac = new AbortController();
   useEffect(() => {
-    readDeck(params.deckID, ac.signal).then((response) => {
-      setDeck(response);
-      setForm(response);
-    });
+    readDeck(params.deckId, ac.signal)
+      .then((response) => {
+        setDeck(response);
+        return readCard(params.cardId, ac.signal);
+      })
+      .then((response) => {
+        console.log(response);
+        setForm(response);
+      });
   }, []);
+  console.log(form);
 
   const handleChange = ({ target }) => {
     setForm({
@@ -29,7 +36,7 @@ export default function EditCard() {
   };
 
   function handleSubmit() {
-    updateDeck(form, ac.signal);
+    updateCard(form, ac.signal);
     history.push(`decks/${form.id}`);
   }
 
@@ -41,7 +48,7 @@ export default function EditCard() {
             <Link to="/">Home</Link>
           </li>
           <li className="breadcrumb-item active" aria-current="page">
-            <Link to={`decks/${params.deckIDid}`}>hello</Link>
+            <Link to={`decks/${params.deckId}`}>{deck.name}</Link>
           </li>
           <li className="breadcrumb-item active" aria-current="page">
             Edit Card
@@ -49,30 +56,30 @@ export default function EditCard() {
         </ol>
       </nav>
       <h1>Edit Card</h1>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor="name">Front</label>
+          <label htmlFor="front">Front</label>
           <input
             type="text"
             className="form-control"
-            id="name"
-            name="name"
+            id="front"
+            name="front"
             onChange={handleChange}
-            value={form.name}
+            value={form.front}
           />
         </div>
         <div className="form-group">
           <label htmlFor="description">Back</label>
           <textarea
             className="form-control"
-            id="description"
+            id="back"
             rows="4"
-            name="description"
+            name="back"
             onChange={handleChange}
-            value={form.description}
+            value={form.back}
           />
         </div>
-        <Link to={`/decks/${form.id}`} className="btn btn-secondary mr-2">
+        <Link to={`/decks/${params.deckId}`} className="btn btn-secondary mr-2">
           Cancel
         </Link>
 

@@ -78,7 +78,6 @@ export default function Deck() {
       <h1 className="mt-4">Cards</h1>
       <ul className="list-group">
         {deck.cards.map((itr, index) => {
-          console.log(itr);
           return (
             <li className="list-group-item d-flex flex-row row" key={index}>
               <div className="text-left col">
@@ -87,7 +86,10 @@ export default function Deck() {
               <div className="text-left col">
                 <p>{itr.back}</p>
                 <div className=" d-flex justify-content-end">
-                  <Link to={`#`} className="btn btn-secondary ">
+                  <Link
+                    to={`/decks/${deck.id}/cards/${itr.id}/edit`}
+                    className="btn btn-secondary "
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
