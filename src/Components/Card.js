@@ -63,7 +63,7 @@ export default function Card({ deck }) {
         <p>
           {`You need at least 3 cards to study. There are ${deck.cards.length} cards in this deck.`}
         </p>
-        <Link to="#" className="btn btn-primary">
+        <Link to={`/decks/${deck.id}/cards/new`} className="btn btn-primary">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"

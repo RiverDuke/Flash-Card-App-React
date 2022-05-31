@@ -15,7 +15,7 @@ export default function Study() {
     }
     getDeck();
     return () => ac.abort();
-  }, []);
+  }, [deck]);
 
   return (
     <>
