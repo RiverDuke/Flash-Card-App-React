@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useRouteMatch, useHistory } from "react-router-dom";
 import { readCard, readDeck, updateCard, updateDeck } from "../utils/api";
 export default function EditCard() {
