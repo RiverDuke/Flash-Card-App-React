@@ -60,7 +60,7 @@ export default function EditCard() {
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="front">Front</label>
-          <input
+          <textarea
             type="text"
             className="form-control"
             id="front"
