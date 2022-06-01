@@ -1,18 +1,19 @@
 import { deleteDeck, listDecks } from "../utils/api";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useHistory } from "react-router-dom";
 
 export default function Home() {
+  console.log("rendering home");
   const [list, setList] = useState([]);
-  const ac = new AbortController();
-  const history = useHistory();
+
   useEffect(() => {
+    console.log("getting decks");
+    const ac = new AbortController();
     listDecks(ac.signal).then((response) => {
       setList(response);
     });
     return () => ac.abort();
-  }, [list]);
+  }, []);
 
   return (
     <>
@@ -84,15 +85,13 @@ export default function Home() {
                       onClick={() => {
                         if (
                           window.confirm(
-                            "Delete this deck? \n \n You will not be abel to recover it."
+                            "Delete this deck? \n \n You will not be able to recover it."
                           )
                         ) {
                           console.log("hello");
-                          deleteDeck(itr.id, ac.signal);
-                          history.push("/");
-                          return;
-                        } else {
-                          history.push("/");
+                          deleteDeck(itr.id).then(() => {
+                            listDecks().then((response) => setList(response));
+                          });
                         }
                       }}
                     >

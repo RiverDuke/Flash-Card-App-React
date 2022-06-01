@@ -11,7 +11,7 @@ export default function Card({ deck }) {
 
   useEffect(() => {
     setDisplay(card.front);
-  }, [deck, current]);
+  }, [card.front]);
 
   function flipHandler(event) {
     setToggle(!toggle);

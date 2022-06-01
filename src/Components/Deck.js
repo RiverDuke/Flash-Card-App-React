@@ -1,23 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Link, useRouteMatch } from "react-router-dom";
-import { deleteCard, deleteDeck, readCard, readDeck } from "../utils/api";
+import { deleteCard, deleteDeck, readDeck } from "../utils/api";
 
 export default function Deck() {
   const { params } = useRouteMatch();
   const [deck, setDeck] = useState({ cards: [] });
-  const ac = new AbortController();
   const history = useHistory();
 
   useEffect(() => {
-    readDeck(params.deckId)
+    const ac = new AbortController();
+    readDeck(params.deckId, ac.signal)
       .then((response) => {
         setDeck(response);
       })
       .catch((err) => console.log(err));
     return () => ac.abort();
-  }, []);
-  console.log(deck.cards);
+  }, [params.deckId]);
 
   return (
     <>
@@ -71,7 +70,7 @@ export default function Deck() {
                 )
               ) {
                 console.log("hello");
-                deleteDeck(deck.id, ac.signal);
+                deleteDeck(deck.id);
                 history.push("/");
                 return;
               } else {
@@ -129,12 +128,12 @@ export default function Deck() {
                     onClick={() => {
                       if (
                         window.confirm(
-                          "Delete this card? \n \n You will not be abel to recover it."
+                          "Delete this card? \n \n You will not be able to recover it."
                         )
                       ) {
-                        deleteCard(itr.id, ac.signal);
+                        deleteCard(itr.id);
                         history.push(`/decks/${deck.id}`);
-                        readDeck(params.deckId, ac.signal).then((response) => {
+                        readDeck(params.deckId).then((response) => {
                           return setDeck(response);
                         });
                       } else {

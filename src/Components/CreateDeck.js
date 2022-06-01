@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { createDeck, readDeck } from "../utils/api";
+import { createDeck } from "../utils/api";
 
 export default function CreateDeck() {
   const history = useHistory();

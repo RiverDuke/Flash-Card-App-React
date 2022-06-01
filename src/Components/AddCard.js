@@ -11,16 +11,16 @@ export default function AddCard() {
   const [data, setData] = useState({ ...initialState });
   const { params } = useRouteMatch();
   const [deck, setDeck] = useState({ cards: [] });
-  const ac = new AbortController();
 
   useEffect(() => {
+    const ac = new AbortController();
     async function getDeck() {
       const response = await readDeck(params.deckId, ac.signal);
       setDeck(() => response);
     }
     getDeck();
     return () => ac.abort();
-  }, [deck]);
+  }, [params.deckId]);
 
   const handleChange = ({ target }) => {
     setData({
@@ -34,9 +34,7 @@ export default function AddCard() {
     const ac = new AbortController();
 
     createCard(params.deckId, data, ac.signal)
-      .then((response) => {
-        console.log(response);
-      })
+      .then((response) => {})
       .catch((err) => console.log(err));
     setData({ ...initialState });
   }

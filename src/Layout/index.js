@@ -16,9 +16,6 @@ function Layout() {
       <Header />
       <div className="container">
         <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
           <Route path="/decks/:deckId/cards/:cardId/edit">
             <EditCard />
           </Route>
@@ -38,6 +35,9 @@ function Layout() {
           </Route>
           <Route path="/decks/:deckId">
             <Deck />
+          </Route>
+          <Route path="/">
+            <Home />
           </Route>
           <Route>
             <NotFound />

@@ -66,28 +66,22 @@
       "id": 8
     },
     {
-      "front": "",
-      "back": "",
-      "deckId": 4,
+      "front": "hello",
+      "back": "hello",
+      "deckId": 2,
       "id": 9
     },
     {
       "front": "",
       "back": "",
-      "deckId": 4,
+      "deckId": 3,
       "id": 10
     },
     {
       "front": "",
       "back": "",
-      "deckId": 4,
+      "deckId": 3,
       "id": 11
-    },
-    {
-      "front": "",
-      "back": "",
-      "deckId": 4,
-      "id": 12
     }
   ]
 }

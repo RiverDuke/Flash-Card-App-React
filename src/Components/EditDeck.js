@@ -10,21 +10,18 @@ export default function EditDeck() {
     description: "",
     cards: [],
   };
-  console.log("initialState", initialState);
 
-  //   console.log(deck);
   const [form, setForm] = useState(initialState);
   const { params } = useRouteMatch();
-  console.log(params);
-  const ac = new AbortController();
+
   useEffect(() => {
+    const ac = new AbortController();
     readDeck(params.deckId, ac.signal).then((response) => {
       // setDeck(response);
       setForm(response);
     });
-  }, []);
-
-  console.log(form);
+    return () => ac.abort;
+  }, [params.deckId]);
 
   const handleChange = ({ target }) => {
     setForm({
@@ -34,7 +31,7 @@ export default function EditDeck() {
   };
 
   function handleSubmit() {
-    updateDeck(form, ac.signal);
+    updateDeck(form);
     history.push(`decks/${form.id}`);
   }
   return (

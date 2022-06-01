@@ -1,21 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { Link, useRouteMatch, useHistory } from "react-router-dom";
-import { readCard, readDeck, updateCard, updateDeck } from "../utils/api";
+import { readCard, readDeck, updateCard } from "../utils/api";
 export default function EditCard() {
   const [deck, setDeck] = useState({});
-  const [card, setCard] = useState({});
   const history = useHistory();
   const initialState = {
     front: "",
     back: "",
   };
 
-  //   console.log(deck);
   const [form, setForm] = useState(initialState);
-  const { params, url } = useRouteMatch();
+  const { params } = useRouteMatch();
 
-  const ac = new AbortController();
   useEffect(() => {
+    const ac = new AbortController();
     readDeck(params.deckId, ac.signal)
       .then((response) => {
         setDeck(response);
@@ -25,7 +23,7 @@ export default function EditCard() {
         console.log(response);
         setForm(response);
       });
-  }, []);
+  }, [params.deckId, params.cardId]);
   console.log(form);
 
   const handleChange = ({ target }) => {
@@ -36,7 +34,7 @@ export default function EditCard() {
   };
 
   function handleSubmit() {
-    updateCard(form, ac.signal);
+    updateCard(form);
     history.push(`decks/${form.id}`);
   }
 

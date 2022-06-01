@@ -4,18 +4,18 @@ import { readDeck } from "../utils/api";
 import Card from "./Card";
 
 export default function Study() {
-  const { url, params } = useRouteMatch();
+  const { params } = useRouteMatch();
   const [deck, setDeck] = useState({ cards: [] });
-  const ac = new AbortController();
 
   useEffect(() => {
+    const ac = new AbortController();
     async function getDeck() {
       const response = await readDeck(params.deckId, ac.signal);
       setDeck(() => response);
     }
     getDeck();
     return () => ac.abort();
-  }, [deck]);
+  }, [params.deckId]);
 
   return (
     <>
