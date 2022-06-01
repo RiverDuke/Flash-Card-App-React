@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Link, useRouteMatch, useHistory } from "react-router-dom";
 import { readDeck, updateDeck } from "../utils/api";
 export default function EditDeck() {
-  // const [deck, setDeck] = useState({});
   const history = useHistory();
   const initialState = {
     id: "",
@@ -17,7 +16,6 @@ export default function EditDeck() {
   useEffect(() => {
     const ac = new AbortController();
     readDeck(params.deckId, ac.signal).then((response) => {
-      // setDeck(response);
       setForm(response);
     });
     return () => ac.abort;

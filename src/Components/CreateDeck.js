@@ -23,7 +23,6 @@ export default function CreateDeck() {
 
     createDeck(data, ac.signal)
       .then((response) => {
-        console.log(response);
         id = response.id;
         history.push(`/decks/${id}`);
       })

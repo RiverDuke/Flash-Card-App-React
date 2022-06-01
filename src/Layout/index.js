@@ -20,13 +20,11 @@ function Layout() {
             <EditCard />
           </Route>
           <Route path="/decks/:deckId/cards/new">
-            <AddCard />
+            <EditCard />
           </Route>
-
           <Route path="/decks/:deckId/study">
             <Study />
           </Route>
-
           <Route path="/decks/:deckId/edit">
             <EditDeck />
           </Route>

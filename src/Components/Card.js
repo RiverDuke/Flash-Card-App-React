@@ -16,11 +16,9 @@ export default function Card({ deck }) {
   function flipHandler(event) {
     setToggle(!toggle);
     if (toggle) {
-      console.log(toggle);
       setDisplay(card.front);
       setNextBtn(null);
     } else {
-      console.log(toggle);
       setDisplay(card.back);
       setNextBtn(
         <button
@@ -41,7 +39,6 @@ export default function Card({ deck }) {
           "Restart Cards? \n \n Click 'cancel' to return to the home page."
         )
       ) {
-        console.log("hello");
         setCurrent(0);
         setDisplay(card.front);
         setNextBtn(null);

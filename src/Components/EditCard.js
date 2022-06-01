@@ -10,21 +10,24 @@ export default function EditCard() {
   };
 
   const [form, setForm] = useState(initialState);
-  const { params } = useRouteMatch();
+  const { params, url } = useRouteMatch();
+
+  let pagetitle = "Add Card";
+  if (url.includes("edit")) {
+    pagetitle = "Edit Card";
+  }
 
   useEffect(() => {
     const ac = new AbortController();
-    readDeck(params.deckId, ac.signal)
-      .then((response) => {
-        setDeck(response);
-        return readCard(params.cardId, ac.signal);
-      })
-      .then((response) => {
-        console.log(response);
-        setForm(response);
-      });
+    readDeck(params.deckId, ac.signal).then((response) => {
+      setDeck(response);
+      if (url.includes("edit")) {
+        readCard(params.cardId, ac.signal).then((response) => {
+          setForm(response);
+        });
+      }
+    });
   }, [params.deckId, params.cardId]);
-  console.log(form);
 
   const handleChange = ({ target }) => {
     setForm({
@@ -49,11 +52,11 @@ export default function EditCard() {
             <Link to={`decks/${params.deckId}`}>{deck.name}</Link>
           </li>
           <li className="breadcrumb-item active" aria-current="page">
-            Edit Card
+            {pagetitle}
           </li>
         </ol>
       </nav>
-      <h1>Edit Card</h1>
+      <h1>{pagetitle}</h1>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="front">Front</label>
@@ -62,6 +65,7 @@ export default function EditCard() {
             className="form-control"
             id="front"
             name="front"
+            placeholder="Front side of card"
             onChange={handleChange}
             value={form.front}
           />
@@ -73,6 +77,7 @@ export default function EditCard() {
             id="back"
             rows="4"
             name="back"
+            placeholder="Back side of card"
             onChange={handleChange}
             value={form.back}
           />

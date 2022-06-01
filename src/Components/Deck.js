@@ -69,7 +69,6 @@ export default function Deck() {
                   "Delete this deck? \n \n You will not be able to recover it."
                 )
               ) {
-                console.log("hello");
                 deleteDeck(deck.id);
                 history.push("/");
                 return;

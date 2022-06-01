@@ -3,11 +3,9 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function Home() {
-  console.log("rendering home");
   const [list, setList] = useState([]);
 
   useEffect(() => {
-    console.log("getting decks");
     const ac = new AbortController();
     listDecks(ac.signal).then((response) => {
       setList(response);
@@ -88,7 +86,6 @@ export default function Home() {
                             "Delete this deck? \n \n You will not be able to recover it."
                           )
                         ) {
-                          console.log("hello");
                           deleteDeck(itr.id).then(() => {
                             listDecks().then((response) => setList(response));
                           });
