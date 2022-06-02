@@ -8,6 +8,7 @@ import CreateDeck from "../Components/CreateDeck";
 import Deck from "../Components/Deck";
 import EditDeck from "../Components/EditDeck";
 import EditCard from "../Components/EditCard";
+import AddCard from "../Components/AddCard";
 
 function Layout() {
   return (
@@ -16,7 +17,7 @@ function Layout() {
       <div className="container">
         <Switch>
           <Route path="/decks/:deckId/cards/new">
-            <EditCard />
+            <AddCard />
           </Route>
           <Route path="/decks/:deckId/cards/:cardId/edit">
             <EditCard />

@@ -65,40 +65,22 @@
       "id": 7
     },
     {
-      "front": "sdfgsdfgsd s",
-      "back": "gsfdgsdfgfsd sd",
+      "front": "sdfgsdfgsd sdfgfgg",
+      "back": "gsfdgsdfgfsd sdggg",
       "deckId": 3,
       "id": 8
     },
     {
-      "front": "",
-      "back": "",
-      "deckId": 3,
-      "id": 10
+      "front": "dacdf",
+      "back": "dbacdf",
+      "deckId": 4,
+      "id": 15
     },
     {
-      "front": "",
-      "back": "",
-      "deckId": 3,
-      "id": 11
-    },
-    {
-      "front": "g",
-      "back": "g",
-      "deckId": 3,
-      "id": 12
-    },
-    {
-      "front": "hh",
-      "back": "hh",
-      "deckId": 3,
-      "id": 13
-    },
-    {
-      "front": "hf",
-      "back": "hf",
-      "deckId": 3,
-      "id": 14
+      "front": "adf",
+      "back": "adsfas",
+      "deckId": 4,
+      "id": 16
     }
   ]
 }
