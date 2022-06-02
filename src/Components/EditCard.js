@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useRouteMatch, useHistory } from "react-router-dom";
-import { readCard, readDeck, updateCard } from "../utils/api";
+import { createCard, readCard, readDeck, updateCard } from "../utils/api";
 export default function EditCard() {
   const [deck, setDeck] = useState({});
   const history = useHistory();
@@ -27,7 +27,7 @@ export default function EditCard() {
         });
       }
     });
-  }, [params.deckId, params.cardId]);
+  }, [params.deckId, params.cardId, url]);
 
   const handleChange = ({ target }) => {
     setForm({
@@ -36,9 +36,18 @@ export default function EditCard() {
     });
   };
 
-  function handleSubmit() {
-    updateCard(form);
-    history.push(`decks/${form.id}`);
+  function handleSubmit(event) {
+    console.log(url);
+    event.preventDefault();
+    if (url.includes("edit")) {
+      updateCard(form).then(() => {
+        history.push(`decks/${deck.id}`);
+      });
+    } else {
+      createCard(deck.id, form).then(() => {
+        history.push(`decks/${deck.id}`);
+      });
+    }
   }
 
   return (

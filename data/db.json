@@ -65,16 +65,10 @@
       "id": 7
     },
     {
-      "front": "sdfgsdfg",
-      "back": "gsfdgsdfgf",
+      "front": "sdfgsdfgsd s",
+      "back": "gsfdgsdfgfsd sd",
       "deckId": 3,
       "id": 8
-    },
-    {
-      "front": "hello",
-      "back": "hello",
-      "deckId": 2,
-      "id": 9
     },
     {
       "front": "",
@@ -87,6 +81,24 @@
       "back": "",
       "deckId": 3,
       "id": 11
+    },
+    {
+      "front": "g",
+      "back": "g",
+      "deckId": 3,
+      "id": 12
+    },
+    {
+      "front": "hh",
+      "back": "hh",
+      "deckId": 3,
+      "id": 13
+    },
+    {
+      "front": "hf",
+      "back": "hf",
+      "deckId": 3,
+      "id": 14
     }
   ]
 }
